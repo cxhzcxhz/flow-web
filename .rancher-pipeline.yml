@@ -2,7 +2,15 @@ stages:
 - name: build
   steps:
   - runScriptConfig:
-      image: java:8
+      image: maven
       shellScript: mvn clean package
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: cxhzcxhz/flow-web:${CICD_EXECUTION_SEQUENCE}
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
 timeout: 60
 notification: {}
