@@ -8,6 +8,8 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: cxhzcxhz/flow-web:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: index.docker.io
 - name: deploy
   steps:
   - applyYamlConfig:
